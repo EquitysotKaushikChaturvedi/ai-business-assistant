@@ -1,89 +1,19 @@
 # Business AI Chat Platform
 
-A platform where users can register, manage their business profile, and chat with an AI chatbot that gives business-aware responses.
+A production-ready AI Business Assistant platform.
+- **Backend:** FastAPI (Python) running on Render.
+- **Frontend:** React + Vite (JavaScript) running on Vercel.
+- **Database:** PostgreSQL (Production) / SQLite (Local).
+- **AI:** Google Gemini Pro.
 
-## Structure
+## Documentation
 
-- `backend/`: FastAPI backend
-- `frontend/`: React + Vite frontend
+- **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)**: Detailed guide on common issues (Login failures, WebSocket errors) and how they were fixed.
+- **[backend/README.md](./backend/README.md)**: Detailed explanation of the Backend code structure and files.
+- **[frontend/README.md](./frontend/README.md)**: Detailed explanation of the Frontend code structure and files.
 
-## Getting Started
+## Admin / Developer Notes
 
-See `backend/README.md` and `frontend/README.md` for specific instructions.
-
-## How to Start the Project
-
-### Prerequisites
-- Python 3.8+ (for backend)
-- Node.js 16+ and npm (for frontend)
-- PostgreSQL database (or configure your database connection)
-
-### Starting the Backend
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Set up environment variables (create a `.env` file in the `backend/` directory with required API keys)
-
-4. Run the FastAPI server:
-   ```bash
-   python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-   ```
-
-The backend will be available at `http://localhost:8000`
-
-### Starting the Frontend
-
-1. Open a new terminal and navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-The frontend will be available at `http://localhost:5173` (or the port shown in your terminal)
-
-## How to Stop the Project
-
-### Stopping the Backend
-- Press `Ctrl + C` in the terminal running the FastAPI server
-
-### Stopping the Frontend
-- Press `Ctrl + C` in the terminal running the development server
-
-### Full Shutdown
-- Stop both terminals as described above
-- All services will be gracefully terminated
-
-## Deployment Guide
-
-### Quick Overview
-- **Backend**: Deploy to [Render](https://render.com/) (Python/FastAPI)
-- **Frontend**: Deploy to [Vercel](https://vercel.com/) (React/Vite)
-
-For detailed step-by-step instructions, see [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
-
-### Key Deployment Steps:
-1. Push your code to GitHub
-2. Deploy backend to Render with your API keys and database URL
-3. Deploy frontend to Vercel with backend URL environment variable
-4. Automatic redeployment on GitHub push
-
-## Environment Variables
-- LOGIN_TIMEOUT_MS: Client-side timeout (default: 20000)
-- MAX_RETRIES: Max automatic login retries (default: 3)
+The system requires `argon2-cffi` and `websockets` libraries to function correctly. Ensure `requirements.txt` is always up to date.
+The Login system uses a secure HTTP-only flow (when possible) or manual Token management.
+The Chat system uses WebSockets for real-time communication.
