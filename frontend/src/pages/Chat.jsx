@@ -19,7 +19,11 @@ export default function Chat() {
     const connectWebSocket = () => {
         if (!token || ws.current?.readyState === WebSocket.OPEN) return;
 
-        const wsUrl = `ws://localhost:8000/chat/ws?token=${token}`;
+        // Use production URL or fallback to localhost
+        const apiUrl = 'https://ai-business-assistant-backend.onrender.com';
+        const wsProtocol = apiUrl.startsWith('https') ? 'wss' : 'ws';
+        const wsHost = apiUrl.replace(/^https?:\/\//, '');
+        const wsUrl = `${wsProtocol}://${wsHost}/chat/ws?token=${token}`;
         ws.current = new WebSocket(wsUrl);
 
         ws.current.onopen = () => {
